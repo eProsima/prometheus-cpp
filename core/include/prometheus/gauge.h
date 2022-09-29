@@ -44,13 +44,15 @@ class PROMETHEUS_CPP_CORE_EXPORT Gauge {
   void Decrement(double);
 
   /// \brief Set the gauge to the given value.
-  void Set(double);
+  void Set(const double value, const std::int64_t timestamp_ms = 0);
 
   /// \brief Set the gauge to the current unix time in seconds.
   void SetToCurrentTime();
 
   /// \brief Get the current value of the gauge.
   double Value() const;
+
+  std::int64_t Timestamp() const;
 
   /// \brief Get the current value of the gauge.
   ///
@@ -60,6 +62,7 @@ class PROMETHEUS_CPP_CORE_EXPORT Gauge {
  private:
   void Change(double);
   std::atomic<double> value_{0.0};
+  std::atomic<std::int64_t> timestamp_ms_{0};
 };
 
 /// \brief Return a builder to configure and register a Gauge metric.

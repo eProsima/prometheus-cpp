@@ -37,6 +37,7 @@ struct PROMETHEUS_CPP_CORE_EXPORT ClientMetric {
 
   struct Gauge {
     double value = 0.0;
+    std::int64_t timestamp_ms = 0;
   };
   Gauge gauge;
 
